@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mwwm/mwwm.dart';
+import 'package:mwwm_many/ui/screen/scorer_screen/scorer_screen.dart';
 import 'package:relation/relation.dart';
 import 'package:mwwm_many/ui/screen/scorers_list/scorers_list_wm.dart';
 import 'package:mwwm_many/domain/scorer.dart';
@@ -50,7 +51,14 @@ class _ScorersListState
                     ),
                   ),
                   onTap: () {
-                    wm.increaseScorer(i);
+                    wm.setCurrent(i);
+                    // TODO: вынести в отдельный класс
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ScorerScreen(),
+                      ),
+                    );
                   },
                 );
               },

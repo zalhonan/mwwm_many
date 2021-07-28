@@ -1,18 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mwwm/mwwm.dart';
-import 'package:relation/relation.dart';
 import 'package:provider/provider.dart';
-
-import 'package:mwwm_many/domain/scorer.dart';
 import 'package:mwwm_many/interactor/scorers_interactor.dart';
 
-class ScorersListWidgetModel extends WidgetModel {
+/// Класс-состояние для страницы с вёрсткой одного счетчика
+class ScorerScreenWidgetModel extends WidgetModel {
+  /// Инициализация Interactor
   final ScorersInteractor _scorersInteractor;
 
   /// поздняя инициализация - мы получим это в конструкторе и зафиксируем как final
   late final scorers;
 
-  ScorersListWidgetModel(
+  ScorerScreenWidgetModel(
     WidgetModelDependencies baseDependencies,
     this._scorersInteractor,
   ) : super(baseDependencies) {
@@ -20,28 +19,26 @@ class ScorersListWidgetModel extends WidgetModel {
     scorers = _scorersInteractor.getScorers();
   }
 
-  /// инктеремент счетчика
+  /// функция - инкремент счетчика. Обращается к интерактору.
   void increaseScorer(int position) {
     _scorersInteractor.increaseScorer(position);
   }
 
-  /// Добавление счетчика
-  Future<void> addScorer() async {
-    _scorersInteractor.addScorer();
-  }
-
-  /// Установить счетчик для работы
-  //TODO узнать как делать правильно
-  void setCurrent(int position) {
-    _scorersInteractor.setCurrent = position;
+  /// Текущий счетчик в работе
+  //TODO узнать как правильно
+  int getCurrent() {
+    return _scorersInteractor.getCurrent;
   }
 }
 
-ScorersListWidgetModel createScorersListWidgetModel(
+/// функция - создание WidgetModel. Используется в CounterScreen
+ScorerScreenWidgetModel createScorerScreenWidgetModel(
   BuildContext context,
 ) {
-  return ScorersListWidgetModel(
+  return ScorerScreenWidgetModel(
     const WidgetModelDependencies(),
+
+    /// запрос интерактора из провайдера
     context.read<ScorersInteractor>(),
   );
 }
