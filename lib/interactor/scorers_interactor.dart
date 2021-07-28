@@ -1,26 +1,39 @@
 import 'package:mwwm_many/domain/scorer.dart';
+import 'package:relation/relation.dart';
 
 /// Интерактор взаимодействия со скорерами
 class ScorersInteractor {
-  final _scorers = <Scorer>[];
+  /// Инициализируем _scorers как стрим
+  final _scorers = StreamedState<Iterable<Scorer>>([]);
 
   /// Получить список скореров
-  Iterable<Scorer> getScorers() {
+  StreamedState<Iterable<Scorer>> getScorers() {
     return _scorers;
   }
 
-  /// добавить скорер
+  /// добавить скорер - иммутабельно заменяем содержание стрима
   void addScorer() {
-    _scorers.add(Scorer(score: 0));
+    /// временный список
+    final tempList = _scorers.value;
+
+    /// конвертация в List, добавление (через ..) нового счетчика
+    final resultList = tempList.toList()..add(Scorer(score: 0));
+
+    /// замена содержимого стрима
+    _scorers.accept(resultList);
   }
 
   /// Получить значение определённого скорера
   int getScorerValue(int position) {
-    return _scorers[position].score;
+    /// через конвертацию в List
+    return _scorers.value.toList()[position].score;
   }
 
-  /// Увеличить значение определенного скорера
+  /// Увеличить значение определенного скорера - конвертация, увеличение,
+  /// присовение нового состояния стриму
   void increaseScorer(int position) {
-    _scorers[position].score++;
+    final tempList = _scorers.value.toList();
+    tempList[position].score++;
+    _scorers.accept(tempList);
   }
 }

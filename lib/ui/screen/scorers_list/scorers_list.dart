@@ -30,7 +30,7 @@ class _ScorersListState
         },
       ),
       appBar: AppBar(
-        title: const Text('Many sounters MWWM demo'),
+        title: const Text('Many сounters MWWM demo'),
       ),
       body: StreamedStateBuilder<Iterable<Scorer>>(
         streamedState: wm.scorers,
@@ -50,7 +50,6 @@ class _ScorersListState
                     ),
                   ),
                   onTap: () {
-                    print(i);
                     wm.increaseScorer(i);
                   },
                 );
