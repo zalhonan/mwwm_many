@@ -52,13 +52,7 @@ class _ScorersListState
                   ),
                   onTap: () {
                     wm.setCurrent(i);
-                    // TODO: вынести в отдельный класс
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ScorerScreen(),
-                      ),
-                    );
+                    wm.openScorer(context);
                   },
                 );
               },
