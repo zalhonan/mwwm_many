@@ -34,17 +34,11 @@ class ScorersListWidgetModel extends WidgetModel {
     _scorersInteractor.addScorer();
   }
 
-  /// Установить счетчик для работы
-  //TODO узнать как делать правильно
-  void setCurrent(int position) {
-    _scorersInteractor.setCurrent = position;
-  }
-
   /// открыть счетчик через его Route
-  void openScorer(BuildContext context) {
+  void openScorer(BuildContext context, int current) {
     Navigator.push(
       context,
-      ScorerScreenRoute(),
+      ScorerScreenRoute(current),
     );
   }
 }

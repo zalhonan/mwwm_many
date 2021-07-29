@@ -6,12 +6,6 @@ class ScorersInteractor {
   /// Инициализируем _scorers как стрим
   final _scorers = StreamedState<Iterable<Scorer>>([]);
 
-  /// текущий скорер, гет и сет
-  // TODO: узнать как это делать правильно
-  int _currentScorer = 0;
-  set setCurrent(int newCurrentScorer) => _currentScorer = newCurrentScorer;
-  int get getCurrent => _currentScorer;
-
   /// Получить список скореров как стрим
   StreamedState<Iterable<Scorer>> getScorers() {
     return _scorers;

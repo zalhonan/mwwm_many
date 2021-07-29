@@ -51,8 +51,7 @@ class _ScorersListState
                     ),
                   ),
                   onTap: () {
-                    wm.setCurrent(i);
-                    wm.openScorer(context);
+                    wm.openScorer(context, i);
                   },
                 );
               },

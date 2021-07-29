@@ -7,11 +7,13 @@ import 'package:relation/relation.dart';
 /// Класс экрана наследует CoreMwwmWidget и типизируется WidgetMoldel-ю
 @immutable
 class ScorerScreen extends CoreMwwmWidget<ScorerScreenWidgetModel> {
-  ScorerScreen({Key? key})
+  int current;
+
+  ScorerScreen(this.current, {Key? key})
       : super(
           key: key,
           widgetModelBuilder: (context) =>
-              createScorerScreenWidgetModel(context),
+              createScorerScreenWidgetModel(context, current),
         );
 
   @override
@@ -27,7 +29,7 @@ class _ScorerScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Scorer number ${wm.getCurrent() + 1}"),
+        title: Text("Scorer number ${wm.current + 1}"),
       ),
       body: Center(
         child: Column(
@@ -40,7 +42,7 @@ class _ScorerScreenState
               streamedState: wm.scorers,
               builder: (context, scorers) {
                 return Text(
-                  "${scorers.elementAt(wm.getCurrent()).score}",
+                  "${scorers.elementAt(wm.current).score}",
                   style: Theme.of(context).textTheme.headline4,
                 );
               },
@@ -51,7 +53,7 @@ class _ScorerScreenState
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           /// обратиться к функции в WidgetModel также можно через wm.функция
-          wm.increaseScorer(wm.getCurrent());
+          wm.increaseScorer(wm.current);
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),
