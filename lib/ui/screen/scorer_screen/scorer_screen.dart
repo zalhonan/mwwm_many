@@ -27,7 +27,7 @@ class _ScorerScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("MWWM demo counter"),
+        title: Text("Scorer number ${wm.getCurrent() + 1}"),
       ),
       body: Center(
         child: Column(

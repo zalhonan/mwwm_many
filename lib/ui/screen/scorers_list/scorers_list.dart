@@ -31,7 +31,7 @@ class _ScorersListState
         },
       ),
       appBar: AppBar(
-        title: const Text('Many сounters MWWM demo'),
+        title: const Text('Many сounters (scorers) MWWM demo'),
       ),
       body: StreamedStateBuilder<Iterable<Scorer>>(
         streamedState: wm.scorers,
