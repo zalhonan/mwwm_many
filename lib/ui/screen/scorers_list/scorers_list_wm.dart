@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mwwm/mwwm.dart';
 import 'package:mwwm_many/ui/screen/scorer_screen/scorer_screen.dart';
+import 'package:mwwm_many/ui/screen/scorer_screen/scorer_screen_route.dart';
 import 'package:relation/relation.dart';
 import 'package:provider/provider.dart';
 
@@ -39,13 +40,11 @@ class ScorersListWidgetModel extends WidgetModel {
     _scorersInteractor.setCurrent = position;
   }
 
-  /// открыть счетчик
+  /// открыть счетчик через его Route
   void openScorer(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => ScorerScreen(),
-      ),
+      ScorerScreenRoute(),
     );
   }
 }
